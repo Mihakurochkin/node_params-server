@@ -9,8 +9,10 @@ function createServer() {
     const parts = params.pathname.split('/').filter(Boolean);
     const query = {};
 
-    for (const part of params.search.slice(1).split('&')) {
-      query[part.split('=')[0]] = part.split('=')[1];
+    console.log(params.searchParams);
+
+    for (const [key, value] of params.searchParams) {
+      query[key] = String(value);
     }
 
     res.setHeader('Content-Type', 'application/json');
